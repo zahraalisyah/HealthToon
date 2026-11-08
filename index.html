@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Toon — Belajar Kesehatan Lewat Cerita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* PALET WARNA HEALTH TOON */
+        :root {
+            --hijau-utama: #387B62;
+            --hijau-gelap: #263B32;
+            --beige: #E4CFA8;
+            --putih-hangat: #FFF9ED;
+        }
+
+        /* PENGATURAN DASAR */
+        body { margin: 0; padding: 0; font-family: 'Nunito', sans-serif; background-color: var(--putih-hangat); color: var(--hijau-gelap); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; margin-top: 0; }
+
+        /* NAVIGASI ATAS */
+        header { background-color: var(--putih-hangat); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: var(--hijau-utama); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background-color: var(--hijau-utama); color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; }
+
+        nav ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+        nav ul li a { text-decoration: none; color: var(--hijau-gelap); font-weight: 600; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--hijau-utama); }
+        .btn-nav { background-color: var(--hijau-utama); color: white !important; padding: 10px 20px; border-radius: 25px; }
+
+        /* BANNER UTAMA (HERO) */
+        .hero { background-color: var(--hijau-utama); margin: 30px 50px; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; padding: 60px; color: white; overflow: hidden; }
+        .hero-text { flex: 1; max-width: 50%; }
+        .hero-text h1 { font-size: 48px; line-height: 1.1; margin-bottom: 20px; }
+        .hero-text p { font-size: 18px; margin-bottom: 30px; opacity: 0.9; }
+        .btn-utama { display: inline-block; background-color: var(--beige); color: var(--hijau-gelap); padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 18px; transition: 0.3s; }
+        .btn-utama:hover { background-color: #d4bd94; transform: translateY(-3px); }
+        
+        .hero-image { flex: 1; display: flex; justify-content: flex-end; }
+        
+        /* KODE GAMBAR BANNER KAMU */
+        .hero-image img { max-width: 100%; height: auto; border-radius: 20px; }
+
+        /* 3 KARTU NILAI */
+        .features { display: flex; gap: 30px; margin: 0 50px 50px 50px; justify-content: center; }
+        .card { background-color: var(--beige); padding: 40px 30px; border-radius: 25px; text-align: center; flex: 1; border: 2px dashed var(--hijau-gelap); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card-icon { width: 70px; height: 70px; background-color: var(--hijau-utama); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; margin: 0 auto 20px auto; }
+        .card h3 { font-size: 24px; margin-bottom: 15px; }
+        .card p { font-size: 16px; color: var(--hijau-gelap); }
+
+        /* RESPONSIF HP */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px; gap: 15px; }
+            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .hero { flex-direction: column; margin: 15px; padding: 30px; text-align: center; }
+            .hero-text { max-width: 100%; margin-bottom: 30px; }
+            .hero-text h1 { font-size: 32px; }
+            .features { flex-direction: column; margin: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">+</div> Health Toon
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html" style="color: var(--hijau-utama);">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="galeri.html">Galeri Komik</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="galeri.html" class="btn-nav">Baca Komik</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Belajar Kesehatan Lewat Cerita</h1>
+            <p>Pahami cara menjaga tubuh tetap bugar melalui komik edukatif bergambar yang seru setiap hari.</p>
+            <a href="galeri.html" class="btn-utama">Mulai Eksplorasi</a>
+        </div>
+        <div class="hero-image">
+            <!-- INI BAGIAN GAMBARNYA, PASTIKAN NAMA FILENYA SAMA -->
+            <img src="gambar.jpg.jpg" alt="Ilustrasi Komik">
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="card">
+            <div class="card-icon">✨</div>
+            <h3>Menarik</h3>
+            <p>Ilustrasi penuh warna dan karakter unik yang membuat topik medis terasa hidup.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🍃</div>
+            <h3>Ringan</h3>
+            <p>Cerita sehari-hari yang santai dan menghibur tanpa istilah medis yang rumit.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">💡</div>
+            <h3>Mudah Dipahami</h3>
+            <p>Pesan kesehatan praktis yang langsung bisa diterapkan oleh semua kalangan usia.</p>
+        </div>
+    </section>
+</body>
+</html>

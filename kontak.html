@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak — Health Toon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --hijau-utama: #387B62; --hijau-gelap: #263B32; --beige: #E4CFA8; --putih-hangat: #FFF9ED; }
+        body { margin: 0; font-family: 'Nunito', sans-serif; background-color: var(--putih-hangat); color: var(--hijau-gelap); line-height: 1.6; }
+        h1, h2 { font-family: 'Poppins', sans-serif; }
+        
+        header { background-color: var(--putih-hangat); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: var(--hijau-utama); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background-color: var(--hijau-utama); color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; }
+        nav ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+        nav ul li a { text-decoration: none; color: var(--hijau-gelap); font-weight: 600; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--hijau-utama); }
+        .btn-nav { background-color: var(--hijau-utama); color: white !important; padding: 10px 20px; border-radius: 25px; }
+
+        .container { padding: 50px; max-width: 800px; margin: 0 auto; }
+        .container h1 { font-size: 40px; color: var(--hijau-utama); margin-bottom: 30px; text-align: center; }
+        
+        .form-kontak { background-color: white; padding: 40px; border-radius: 20px; border: 2px dashed var(--hijau-gelap); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 8px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; font-family: 'Nunito', sans-serif; box-sizing: border-box; }
+        .form-group textarea { height: 120px; resize: vertical; }
+        
+        .btn-kirim { background-color: var(--hijau-utama); color: white; padding: 15px 30px; border: none; border-radius: 25px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; transition: background-color 0.3s; }
+        .btn-kirim:hover { background-color: #2d634e; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px; gap: 15px; }
+            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .container { padding: 30px 20px; }
+            .form-kontak { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><div class="logo-icon">+</div> Health Toon</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="galeri.html">Galeri Komik</a></li>
+                <li><a href="kontak.html" style="color: var(--hijau-utama);">Kontak</a></li>
+                <li><a href="galeri.html" class="btn-nav">Baca Komik</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Hubungi Kami</h1>
+        <div class="form-kontak">
+            <p style="text-align: center; margin-bottom: 30px;">Punya ide cerita, pertanyaan kesehatan, atau ingin berkolaborasi? Kirim pesanmu di sini!</p>
+            <form action="#">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" placeholder="Masukkan namamu">
+                </div>
+                <div class="form-group">
+                    <label>Alamat Email</label>
+                    <input type="email" placeholder="nama@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Pesan atau Topik Komik</label>
+                    <textarea placeholder="Tulis pesanmu di sini..."></textarea>
+                </div>
+                <button type="submit" class="btn-kirim">Kirim Pesan</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
