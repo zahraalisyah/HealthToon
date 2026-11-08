@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baca Komik — Health Toon</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--hijau:#387B62;--hijau-gelap:#263B32;--beige:#E4CFA8;--putih:#FFF9ED;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--putih);color:var(--hijau-gelap);}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:var(--putih);box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+.navbar .brand{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:900;color:var(--hijau-gelap);cursor:pointer;text-decoration:none;}
+.navbar .brand-icon{background:var(--hijau);color:var(--putih);width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;font-size:1.2rem;}
+.navbar nav{display:flex;align-items:center;gap:20px;}
+.navbar nav a{padding:8px 16px;font-weight:700;color:var(--hijau-gelap);text-decoration:none;cursor:pointer;border-radius:20px;font-size:0.95rem;}
+.navbar nav a:hover{color:var(--hijau);}
+.btn{padding:12px 24px;border-radius:30px;font-weight:700;border:none;cursor:pointer;font-family:inherit;font-size:1rem;text-decoration:none;display:inline-block;text-align:center;}
+.btn-primary{background:var(--hijau);color:var(--putih);}
+.btn-primary:hover{background:var(--hijau-gelap);}
+
+/* Layout Baca Komik */
+.webtoon-layout{display:flex;gap:30px;max-width:1200px;margin:30px auto;padding:0 20px;}
+.webtoon-canvas{flex:1;display:flex;flex-direction:column;gap:20px;}
+
+/* Panel Gambar */
+.comic-panel{background:var(--putih);border:4px solid var(--beige);border-radius:20px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.05);display:none;} /* Awalnya disembunyikan */
+.comic-panel.active{display:block;} /* Yang aktif aja yang muncul */
+.comic-panel img{width:100%;height:auto;display:block;}
+
+/* Sidebar */
+.webtoon-sidebar{width:300px;background:var(--putih);border:3px solid var(--beige);border-radius:20px;padding:24px;height:fit-content;position:sticky;top:30px;}
+.webtoon-sidebar h2{font-size:1.3rem;margin-bottom:8px;}
+.progress-bar{width:100%;height:8px;background:var(--beige);border-radius:10px;margin:12px 0;}
+.progress-bar span{display:block;height:100%;background:var(--hijau);border-radius:10px;width:25%; transition: width 0.3s;}
+.summary-card{background:var(--beige);border-radius:12px;padding:16px;font-size:0.9rem;margin-bottom:20px;line-height:1.5;}
+
+/* Tombol Navigasi */
+.nav-buttons{display:flex;gap:10px;margin-bottom:20px;}
+.nav-buttons button{flex:1; padding:10px;}
+
+@media(max-width:900px){.webtoon-layout{flex-direction:column;}.webtoon-sidebar{width:100%;position:static;}}
+</style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="galeri.html" class="brand">
+      <div class="brand-icon">+</div> Health Toon
+    </a>
+    <nav>
+      <a href="galeri.html">Beranda</a>
+      <a href="galeri.html">Galeri Komik</a>
+      <a href="read.html" class="btn btn-primary">Baca Komik</a>
+    </nav>
+  </header>
+  
+  <div class="webtoon-layout">
+    
+    <!-- Sidebar Info -->
+    <aside class="webtoon-sidebar">
+      <h2>Rahasia Tidur Nyenyak</h2>
+      <p style="font-size:0.9rem; color:var(--hijau);" id="page-indicator">Halaman 1 dari 4</p>
+      <div class="progress-bar"><span id="progress-fill"></span></div>
+      
+      <div class="summary-card">
+        <strong>Materi:</strong><br>Tidur 7-9 jam sehari membantu otak menyimpan ingatan dan mengembalikan energi tubuh.
+      </div>
+      
+      <!-- Tombol Next & Prev -->
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="btn-prev" onclick="prevPage()" style="opacity:0.5; cursor:not-allowed;">&larr; Prev</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextPage()">Next &rarr;</button>
+      </div>
+      
+      <!-- Tombol Kuis (Baru aktif kalau udah di halaman terakhir) -->
+      <a href="index.html" class="btn btn-primary" id="btn-kuis" style="width:100%; display:none;" onclick="alert('Kuis selesai! Kamu dapat badge Bintang Tidur 🌟')">Selesai & Kuis</a>
+    </aside>
+
+    <!-- Kanvas Gambar Komik -->
+    <div class="webtoon-canvas">
+      
+      <!-- PANEL 1 -->
+      <div class="comic-panel active" id="panel-1">
+        <img src="panel1.jpg.jpg" alt="Panel 1" />
+      </div>
+
+      <!-- PANEL 2 -->
+      <div class="comic-panel" id="panel-2">
+        <img src="panel2.jpg.jpg" alt="Panel 2" />
+      </div>
+
+      <!-- PANEL 3 -->
+      <div class="comic-panel" id="panel-3">
+        <img src="panel3.jpg.jpg" alt="Panel 3" />
+      </div>
+
+      <!-- PANEL 4 -->
+      <div class="comic-panel" id="panel-4">
+        <img src="panel4.jpg.jpg" alt="Panel 4" />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT UNTUK GANTI HALAMAN -->
+  <script>
+    let currentPage = 1;
+    const totalPages = 4;
+
+    function updateUI() {
+      // Sembunyikan semua panel
+      document.querySelectorAll('.comic-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      
+      // Tampilkan panel yang aktif
+      document.getElementById('panel-' + currentPage).classList.add('active');
+
+      // Update teks indikator halaman
+      document.getElementById('page-indicator').innerText = 'Halaman ' + currentPage + ' dari ' + totalPages;
+
+      // Update progress bar
+      let progressWidth = (currentPage / totalPages) * 100;
+      document.getElementById('progress-fill').style.width = progressWidth + '%';
+
+      // Atur tombol Prev
+      const btnPrev = document.getElementById('btn-prev');
+      if (currentPage === 1) {
+        btnPrev.style.opacity = '0.5';
+        btnPrev.style.cursor = 'not-allowed';
+      } else {
+        btnPrev.style.opacity = '1';
+        btnPrev.style.cursor = 'pointer';
+      }
+
+      // Atur tombol Next & Kuis
+      const btnNext = document.getElementById('btn-next');
+      const btnKuis = document.getElementById('btn-kuis');
+      
+      if (currentPage === totalPages) {
+        btnNext.style.display = 'none'; // Hilangkan tombol next
+        btnKuis.style.display = 'block'; // Munculkan tombol kuis
+      } else {
+        btnNext.style.display = 'block';
+        btnKuis.style.display = 'none';
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateUI();
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        updateUI();
+      }
+    }
+  </script>
+
+</body>
+</html>
