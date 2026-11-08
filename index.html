@@ -71,7 +71,6 @@
                 <li><a href="tentang.html">Tentang</a></li>
                 <li><a href="galeri.html">Galeri Komik</a></li>
                 <li><a href="kontak.html">Kontak</a></li>
-                <li><a href="login.html" class="btn-nav">Login</a></li>
                 <li><a href="galeri.html" class="btn-nav">Baca Komik</a></li>
             </ul>
         </nav>
@@ -106,5 +105,12 @@
             <p>Pesan kesehatan praktis yang langsung bisa diterapkan oleh semua kalangan usia.</p>
         </div>
     </section>
+<script>
+  // Cek apakah user udah login
+  if (localStorage.getItem('sudahLogin') === 'true') {
+    // Kalau udah, sembunyikan tombol login
+    document.getElementById('menu-login').style.display = 'none';
+  }
+</script>
 </body>
 </html>

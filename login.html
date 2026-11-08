@@ -31,7 +31,7 @@ h2{margin-bottom:30px;color:var(--hijau-gelap);}
     </div>
     <h2>Selamat Datang Kembali!</h2>
     
-    <form action="index.html">
+    <form onsubmit="event.preventDefault(); masukAplikasi();">
       <div class="input-group">
         <label>Email</label>
         <input type="email" placeholder="nama@email.com" required>
@@ -47,6 +47,13 @@ h2{margin-bottom:30px;color:var(--hijau-gelap);}
       Belum punya akun? <a href="#">Daftar di sini</a>
     </div>
   </div>
+
+  <script>
+    function masukAplikasi() {
+      localStorage.setItem('sudahLogin', 'true');
+      window.location.href = 'index.html';
+    }
+  </script>
 
 </body>
 </html>
